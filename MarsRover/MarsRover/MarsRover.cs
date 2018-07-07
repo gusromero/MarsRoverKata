@@ -1,4 +1,6 @@
-﻿namespace MarsRover
+﻿using System;
+
+namespace MarsRover
 {
     public class MarsRover
     {
@@ -27,12 +29,46 @@
                 switch (command)
                 {
                     case 'f':
-                        PositionX++;
+                        MoveForward();
                         break;
+                    case 'b':
+                        PositionY--;
+                        break;
+                    case 'l':
+                        Orientation = "W";
+                        break;
+                    case 'r':
+                        Orientation = "E";
+                        break;
+                    default:
+                        throw new ArgumentException();
+
                 }
-                
+
             }
-            
+
+        }
+
+        private void MoveForward()
+        {
+            switch (Orientation)
+            {
+                case "N":
+                    PositionY++;
+                    break;
+                case "S":
+                    PositionY--;
+                    break;
+                case "E":
+                    PositionX++;
+                    break;
+                case "W":
+                    PositionX--;
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+
         }
     }
 }
