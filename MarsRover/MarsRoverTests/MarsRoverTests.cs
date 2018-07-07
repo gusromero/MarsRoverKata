@@ -49,7 +49,7 @@ namespace MarsRoverTests
         }
 
         [TestMethod]
-        public void MSTurnsAndMovesForward()
+        public void MSTurnsRightAndMovesForward()
         {
             var rover = new MarsRover.MarsRover();
             rover.Command("rf");
@@ -57,6 +57,28 @@ namespace MarsRoverTests
             Assert.AreEqual(rover.PositionX, 1);
             Assert.AreEqual(rover.PositionY, 0);
             Assert.AreEqual(rover.Orientation, OrientationDirection.East);
+        }
+
+        [TestMethod]
+        public void MSTurnsRightTwiceAndMovesForward()
+        {
+            var rover = new MarsRover.MarsRover();
+            rover.Command("rrf");
+
+            Assert.AreEqual(rover.PositionX, 0);
+            Assert.AreEqual(rover.PositionY, -1);
+            Assert.AreEqual(rover.Orientation, OrientationDirection.South);
+        }
+
+        [TestMethod]
+        public void MSFourTurnsRightAndMovesForward()
+        {
+            var rover = new MarsRover.MarsRover();
+            rover.Command("rrrrf");
+
+            Assert.AreEqual(rover.PositionX, 0);
+            Assert.AreEqual(rover.PositionY, 1);
+            Assert.AreEqual(rover.Orientation, OrientationDirection.North);
         }
     }
 }
