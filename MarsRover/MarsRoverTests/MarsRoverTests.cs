@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using MarsRover;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MarsRoverTests
 {
@@ -12,17 +13,17 @@ namespace MarsRoverTests
 
             Assert.AreEqual(rover.PositionX, 0);
             Assert.AreEqual(rover.PositionY, 0);
-            Assert.AreEqual(rover.Orientation, "N");
+            Assert.AreEqual(rover.Orientation, OrientationDirection.North);
         }
 
         [TestMethod]
         public void MSIsSetInTheCorrectPositionAndOrientation()
         {
-            var rover = new MarsRover.MarsRover(3, 4, "S");
+            var rover = new MarsRover.MarsRover(3, 4, OrientationDirection.South);
 
             Assert.AreEqual(rover.PositionX, 3);
             Assert.AreEqual(rover.PositionY, 4);
-            Assert.AreEqual(rover.Orientation, "S");
+            Assert.AreEqual(rover.Orientation, OrientationDirection.South);
         }
 
         [TestMethod]
@@ -33,7 +34,7 @@ namespace MarsRoverTests
 
             Assert.AreEqual(rover.PositionX, 0);
             Assert.AreEqual(rover.PositionY, 1);
-            Assert.AreEqual(rover.Orientation, "N");
+            Assert.AreEqual(rover.Orientation, OrientationDirection.North);
         }
 
         [TestMethod]
@@ -44,7 +45,7 @@ namespace MarsRoverTests
 
             Assert.AreEqual(rover.PositionX, 0);
             Assert.AreEqual(rover.PositionY, -1);
-            Assert.AreEqual(rover.Orientation, "N");
+            Assert.AreEqual(rover.Orientation, OrientationDirection.North);
         }
 
         [TestMethod]
@@ -55,7 +56,7 @@ namespace MarsRoverTests
 
             Assert.AreEqual(rover.PositionX, 1);
             Assert.AreEqual(rover.PositionY, 0);
-            Assert.AreEqual(rover.Orientation, "E");
+            Assert.AreEqual(rover.Orientation, OrientationDirection.East);
         }
     }
 }

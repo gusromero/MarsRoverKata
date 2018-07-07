@@ -6,16 +6,16 @@ namespace MarsRover
     {
         public int PositionX { get; set; }
         public int PositionY { get; set; }
-        public string Orientation { get; set; }   //TODO: enum
+        public OrientationDirection Orientation { get; set; }   //TODO: enum
 
 
         public MarsRover()
-            : this(0, 0, "N")
+            : this(0, 0, OrientationDirection.North)
         {
 
         }
 
-        public MarsRover(int x, int y, string orientation)
+        public MarsRover(int x, int y, OrientationDirection orientation)
         {
             PositionX = x;
             PositionY = y;
@@ -32,13 +32,13 @@ namespace MarsRover
                         MoveForward();
                         break;
                     case 'b':
-                        PositionY--;
+                        MoveBackward();
                         break;
                     case 'l':
-                        Orientation = "W";
+                        Orientation = OrientationDirection.West;
                         break;
                     case 'r':
-                        Orientation = "E";
+                        Orientation = OrientationDirection.East;
                         break;
                     default:
                         throw new ArgumentException();
@@ -53,17 +53,39 @@ namespace MarsRover
         {
             switch (Orientation)
             {
-                case "N":
+                case OrientationDirection.North:
                     PositionY++;
                     break;
-                case "S":
+                case OrientationDirection.South:
                     PositionY--;
                     break;
-                case "E":
+                case OrientationDirection.East:
                     PositionX++;
                     break;
-                case "W":
+                case OrientationDirection.West:
                     PositionX--;
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+
+        }
+
+        private void MoveBackward()
+        {
+            switch (Orientation)
+            {
+                case OrientationDirection.North:
+                    PositionY--;
+                    break;
+                case OrientationDirection.South:
+                    PositionY++;
+                    break;
+                case OrientationDirection.East:
+                    PositionX--;
+                    break;
+                case OrientationDirection.West:
+                    PositionX++;
                     break;
                 default:
                     throw new ArgumentException();
