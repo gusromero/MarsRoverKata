@@ -35,10 +35,10 @@ namespace MarsRover
                         MoveBackward();
                         break;
                     case 'l':
-                        Orientation = OrientationDirection.West;
+                        TurnLeft();
                         break;
                     case 'r':
-                        Orientation = OrientationDirection.East;
+                        TurnRight();
                         break;
                     default:
                         throw new ArgumentException();
@@ -90,7 +90,44 @@ namespace MarsRover
                 default:
                     throw new ArgumentException();
             }
+        }
 
+        private void TurnRight()
+        {
+            switch (Orientation)
+            {
+                case OrientationDirection.North:
+                    Orientation = OrientationDirection.East;
+                    break;
+                case OrientationDirection.South:
+                    Orientation = OrientationDirection.West;
+                    break;
+                case OrientationDirection.East:
+                    Orientation = OrientationDirection.South;
+                    break;
+                case OrientationDirection.West:
+                    Orientation = OrientationDirection.North;
+                    break;
+            }
+        }
+
+        private void TurnLeft()
+        {
+            switch (Orientation)
+            {
+                case OrientationDirection.North:
+                    Orientation = OrientationDirection.West;
+                    break;
+                case OrientationDirection.South:
+                    Orientation = OrientationDirection.East;
+                    break;
+                case OrientationDirection.East:
+                    Orientation = OrientationDirection.North;
+                    break;
+                case OrientationDirection.West:
+                    Orientation = OrientationDirection.South;
+                    break;
+            }
         }
     }
 }
