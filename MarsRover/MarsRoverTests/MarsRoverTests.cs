@@ -30,7 +30,7 @@ namespace MarsRoverTests
         public void MSMovesForward()
         {
             var rover = new MarsRover.MarsRover();
-            rover.Command("f");
+            rover.ExecuteCommands("f");
 
             Assert.AreEqual(rover.PositionX, 0);
             Assert.AreEqual(rover.PositionY, 1);
@@ -41,7 +41,7 @@ namespace MarsRoverTests
         public void MSMovesBackward()
         {
             var rover = new MarsRover.MarsRover();
-            rover.Command("b");
+            rover.ExecuteCommands("b");
 
             Assert.AreEqual(rover.PositionX, 0);
             Assert.AreEqual(rover.PositionY, -1);
@@ -52,7 +52,7 @@ namespace MarsRoverTests
         public void MSTurnsRightAndMovesForward()
         {
             var rover = new MarsRover.MarsRover();
-            rover.Command("rf");
+            rover.ExecuteCommands("rf");
 
             Assert.AreEqual(rover.PositionX, 1);
             Assert.AreEqual(rover.PositionY, 0);
@@ -63,7 +63,7 @@ namespace MarsRoverTests
         public void MSTurnsRightTwiceAndMovesForward()
         {
             var rover = new MarsRover.MarsRover();
-            rover.Command("rrf");
+            rover.ExecuteCommands("rrf");
 
             Assert.AreEqual(rover.PositionX, 0);
             Assert.AreEqual(rover.PositionY, -1);
@@ -74,7 +74,7 @@ namespace MarsRoverTests
         public void MSFourTurnsRightAndMovesForward()
         {
             var rover = new MarsRover.MarsRover();
-            rover.Command("rrrrf");
+            rover.ExecuteCommands("rrrrf");
 
             Assert.AreEqual(rover.PositionX, 0);
             Assert.AreEqual(rover.PositionY, 1);

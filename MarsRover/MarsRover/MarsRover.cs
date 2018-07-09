@@ -22,7 +22,7 @@ namespace MarsRover
             Orientation = orientation;
         }
 
-        public void Command(string commands)
+        public void ExecuteCommands(string commands)
         {
             foreach (var command in commands)
             {
