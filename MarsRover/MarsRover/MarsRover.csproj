@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackwardCommand.cs" />
+    <Compile Include="TurnLeftCommand.cs" />
+    <Compile Include="TurnRightCommand.cs" />
+    <Compile Include="ForwardCommand.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="MarsRover.cs" />
     <Compile Include="OrientationDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

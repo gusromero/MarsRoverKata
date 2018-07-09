@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MarsRover
 {
@@ -6,8 +7,9 @@ namespace MarsRover
     {
         public int PositionX { get; set; }
         public int PositionY { get; set; }
-        public OrientationDirection Orientation { get; set; }   //TODO: enum
+        public OrientationDirection Orientation { get; set; }
 
+        private Dictionary<char, ICommand> _availableCommands;
 
         public MarsRover()
             : this(0, 0, OrientationDirection.North)
@@ -20,114 +22,30 @@ namespace MarsRover
             PositionX = x;
             PositionY = y;
             Orientation = orientation;
+
+            InitializeAvailableCommands();
+        }
+
+        private void InitializeAvailableCommands()
+        {
+            _availableCommands = new Dictionary<char, ICommand>
+            {
+                ['f'] = new ForwardCommand(),
+                ['b'] = new BackwardCommand(),
+                ['r'] = new TurnRightCommand(),
+                ['l'] = new TurnLeftCommand()
+            };
         }
 
         public void ExecuteCommands(string commands)
         {
             foreach (var command in commands)
             {
-                switch (command)
-                {
-                    case 'f':
-                        MoveForward();
-                        break;
-                    case 'b':
-                        MoveBackward();
-                        break;
-                    case 'l':
-                        TurnLeft();
-                        break;
-                    case 'r':
-                        TurnRight();
-                        break;
-                    default:
-                        throw new ArgumentException();
-
-                }
-
+                _availableCommands[command].Execute(this);
             }
 
         }
 
-        private void MoveForward()
-        {
-            switch (Orientation)
-            {
-                case OrientationDirection.North:
-                    PositionY++;
-                    break;
-                case OrientationDirection.South:
-                    PositionY--;
-                    break;
-                case OrientationDirection.East:
-                    PositionX++;
-                    break;
-                case OrientationDirection.West:
-                    PositionX--;
-                    break;
-                default:
-                    throw new ArgumentException();
-            }
-
-        }
-
-        private void MoveBackward()
-        {
-            switch (Orientation)
-            {
-                case OrientationDirection.North:
-                    PositionY--;
-                    break;
-                case OrientationDirection.South:
-                    PositionY++;
-                    break;
-                case OrientationDirection.East:
-                    PositionX--;
-                    break;
-                case OrientationDirection.West:
-                    PositionX++;
-                    break;
-                default:
-                    throw new ArgumentException();
-            }
-        }
-
-        private void TurnRight()
-        {
-            switch (Orientation)
-            {
-                case OrientationDirection.North:
-                    Orientation = OrientationDirection.East;
-                    break;
-                case OrientationDirection.South:
-                    Orientation = OrientationDirection.West;
-                    break;
-                case OrientationDirection.East:
-                    Orientation = OrientationDirection.South;
-                    break;
-                case OrientationDirection.West:
-                    Orientation = OrientationDirection.North;
-                    break;
-            }
-        }
-
-        private void TurnLeft()
-        {
-            switch (Orientation)
-            {
-                case OrientationDirection.North:
-                    Orientation = OrientationDirection.West;
-                    break;
-                case OrientationDirection.South:
-                    Orientation = OrientationDirection.East;
-                    break;
-                case OrientationDirection.East:
-                    Orientation = OrientationDirection.North;
-                    break;
-                case OrientationDirection.West:
-                    Orientation = OrientationDirection.South;
-                    break;
-            }
-        }
+   
     }
 }
