@@ -1,5 +1,6 @@
 ﻿using MarsRover;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace MarsRoverTests
 {
@@ -7,12 +8,18 @@ namespace MarsRoverTests
     public class MarsRoverTests
     {
         private MarsRover.MarsRover _rover;
+        private Mock<IPlanet> _planetMock;
 
         [TestInitialize]
         public void Setup()
         {
-            _rover = new MarsRover.MarsRover();
+            _planetMock = new Mock<IPlanet>();
+            _planetMock.Setup(x => x.GetSizeX()).Returns(10);
+            _planetMock.Setup(x => x.GetSizeY()).Returns(10);
+
+            _rover = new MarsRover.MarsRover(_planetMock.Object);
         }
+
 
         [TestMethod]
         public void MSIsInitiallySetInOriginFacingNorth()
@@ -48,8 +55,18 @@ namespace MarsRoverTests
             _rover.ExecuteCommands("b");
 
             Assert.AreEqual(_rover.PositionX, 0);
-            Assert.AreEqual(_rover.PositionY, -1);
+            Assert.AreEqual(_rover.PositionY, 9);
             Assert.AreEqual(_rover.Orientation, OrientationDirection.North);
+        }
+
+        [TestMethod]
+        public void MSTurnsLeftMovesForward()
+        {
+            _rover.ExecuteCommands("lf");
+
+            Assert.AreEqual(_rover.PositionX, 9);
+            Assert.AreEqual(_rover.PositionY, 0);
+            Assert.AreEqual(_rover.Orientation, OrientationDirection.West);
         }
 
         [TestMethod]
@@ -68,7 +85,7 @@ namespace MarsRoverTests
             _rover.ExecuteCommands("rrf");
 
             Assert.AreEqual(_rover.PositionX, 0);
-            Assert.AreEqual(_rover.PositionY, -1);
+            Assert.AreEqual(_rover.PositionY, 9);
             Assert.AreEqual(_rover.Orientation, OrientationDirection.South);
         }
 

@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackwardCommand.cs" />
+    <Compile Include="IPlanet.cs" />
+    <Compile Include="Mars.cs" />
     <Compile Include="TurnLeftCommand.cs" />
     <Compile Include="TurnRightCommand.cs" />
     <Compile Include="ForwardCommand.cs" />

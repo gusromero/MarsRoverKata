@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MarsRover
 {
@@ -9,19 +8,26 @@ namespace MarsRover
         public int PositionY { get; set; }
         public OrientationDirection Orientation { get; set; }
 
+        private IPlanet _planet;
+
         private Dictionary<char, ICommand> _availableCommands;
 
         public MarsRover()
             : this(0, 0, OrientationDirection.North)
+        { }
+
+        public MarsRover(IPlanet planet)
+            : this(0, 0, OrientationDirection.North, planet)
         {
 
         }
 
-        public MarsRover(int x, int y, OrientationDirection orientation)
+        public MarsRover(int x, int y, OrientationDirection orientation, IPlanet planet = null)
         {
             PositionX = x;
             PositionY = y;
             Orientation = orientation;
+            _planet = planet;
 
             InitializeAvailableCommands();
         }
@@ -46,6 +52,6 @@ namespace MarsRover
 
         }
 
-   
+
     }
 }
