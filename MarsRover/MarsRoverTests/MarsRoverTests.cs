@@ -98,5 +98,25 @@ namespace MarsRoverTests
             Assert.AreEqual(_rover.PositionY, 1);
             Assert.AreEqual(_rover.Orientation, OrientationDirection.North);
         }
+
+        [TestMethod]
+        public void MSGoesRoundThePlanetVertically()
+        {
+            _rover.ExecuteCommands("ffffffffff");
+
+            Assert.AreEqual(_rover.PositionX, 0);
+            Assert.AreEqual(_rover.PositionY, 0);
+            Assert.AreEqual(_rover.Orientation, OrientationDirection.North);
+        }
+
+        [TestMethod]
+        public void MSGoesRoundThePlanetHorizontally()
+        {
+            _rover.ExecuteCommands("rffffffffff");
+
+            Assert.AreEqual(_rover.PositionX, 0);
+            Assert.AreEqual(_rover.PositionY, 0);
+            Assert.AreEqual(_rover.Orientation, OrientationDirection.East);
+        }
     }
 }
