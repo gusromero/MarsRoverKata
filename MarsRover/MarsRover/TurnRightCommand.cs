@@ -4,7 +4,7 @@ namespace MarsRover
 {
     class TurnRightCommand : ICommand
     {
-        public void Execute(MarsRover rover)
+        public void Execute(MarsRover rover, IPlanet planet)
         {
             switch (rover.Orientation)
             {

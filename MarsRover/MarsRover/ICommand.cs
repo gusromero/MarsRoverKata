@@ -2,6 +2,6 @@
 {
     interface ICommand
     {
-        void Execute(MarsRover rover);
+        void Execute(MarsRover rover, IPlanet planet);
     }
 }
