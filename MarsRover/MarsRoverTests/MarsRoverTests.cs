@@ -118,5 +118,18 @@ namespace MarsRoverTests
             Assert.AreEqual(_rover.PositionY, 0);
             Assert.AreEqual(_rover.Orientation, OrientationDirection.East);
         }
+
+        [TestMethod]
+        public void MSFindsAnObstacle()
+        {
+            _planetMock.Setup(b => b.IsObstacle(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+            _planetMock.Setup(b => b.IsObstacle(3, 0)).Returns(true);
+
+            _rover.ExecuteCommands("ffffffffff");
+
+            Assert.AreEqual(_rover.PositionX, 0);
+            Assert.AreEqual(_rover.PositionY, 2);
+            Assert.AreEqual(_rover.Orientation, OrientationDirection.North);
+        }
     }
 }
