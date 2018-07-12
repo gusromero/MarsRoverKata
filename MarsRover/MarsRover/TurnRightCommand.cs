@@ -24,5 +24,10 @@ namespace MarsRover
                     throw new InvalidEnumArgumentException();
             }
         }
+
+        public bool CanExecute(MarsRover rover, IPlanet planet)
+        {
+            return true;
+        }
     }
 }
