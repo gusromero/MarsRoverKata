@@ -2,13 +2,13 @@
 {
     public abstract class Command : ICommand
     {
-        private ICommand _rollbackCommand;
+        private readonly ICommand _rollbackCommand;
 
-        public Command()
+        protected Command()
         {
         }
 
-        public Command(ICommand rollbackCommand)
+        protected Command(ICommand rollbackCommand)
         {
             _rollbackCommand = rollbackCommand;
         }

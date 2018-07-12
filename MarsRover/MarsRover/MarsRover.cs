@@ -8,7 +8,7 @@ namespace MarsRover
         public int PositionY { get; set; }
         public OrientationDirection Orientation { get; set; }
 
-        private IPlanet _planet;
+        private readonly IPlanet _planet;
 
         private Dictionary<char, ICommand> _availableCommands;
 
@@ -54,9 +54,6 @@ namespace MarsRover
                     break;
                 }
             }
-
         }
-
-
     }
 }

@@ -2,7 +2,7 @@
 
 namespace MarsRover
 {
-    class ForwardCommand : Command
+    public class ForwardCommand : Command
     {
         public ForwardCommand()
         {
