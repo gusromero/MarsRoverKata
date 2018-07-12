@@ -47,8 +47,7 @@ namespace MarsRover
         {
             foreach (var command in commands)
             {
-                if (_availableCommands[command].CanExecute(this, _planet))
-                    _availableCommands[command].Execute(this, _planet);
+                _availableCommands[command].Execute(this, _planet);
             }
 
         }

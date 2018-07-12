@@ -30,10 +30,5 @@ namespace MarsRover
                     throw new InvalidEnumArgumentException();
             }
         }
-
-        public bool CanExecute(MarsRover rover, IPlanet planet)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
