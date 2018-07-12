@@ -51,7 +51,7 @@ namespace MarsRover
                 if (_planet.IsObstacle(PositionX, PositionY))
                 {
                     _availableCommands[command].Rollback(this, _planet);
-                    break;
+                    throw new ObstacleFoundException("Obstacle found");
                 }
             }
         }

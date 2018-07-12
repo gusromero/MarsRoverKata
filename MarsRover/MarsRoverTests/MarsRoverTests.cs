@@ -124,8 +124,15 @@ namespace MarsRoverTests
         {
             _planetMock.Setup(b => b.IsObstacle(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
             _planetMock.Setup(b => b.IsObstacle(0, 3)).Returns(true);
-
-            _rover.ExecuteCommands("ffffffffff");
+            try
+            {
+                _rover.ExecuteCommands("ffffffffff");
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (ObstacleFoundException ofex)
+            {
+                Assert.AreEqual(ofex.Message, "Obstacle found");
+            }
 
             Assert.AreEqual(_rover.PositionX, 0);
             Assert.AreEqual(_rover.PositionY, 2);
