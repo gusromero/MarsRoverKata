@@ -19,5 +19,10 @@
         {
             return _sizeY;
         }
+
+        public bool IsObstacle(int x, int y)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
