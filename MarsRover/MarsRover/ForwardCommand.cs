@@ -4,6 +4,17 @@ namespace MarsRover
 {
     class ForwardCommand : ICommand
     {
+        private ICommand _rollbackCommand;
+
+        public ForwardCommand()
+        {
+        }
+
+        public ForwardCommand(ICommand rollbackCommand)
+        {
+            _rollbackCommand = rollbackCommand;
+        }
+
         public void Execute(MarsRover rover, IPlanet planet)
         {
             switch (rover.Orientation)
@@ -29,6 +40,11 @@ namespace MarsRover
                 default:
                     throw new InvalidEnumArgumentException();
             }
+        }
+
+        public void Rollback(MarsRover rover, IPlanet planet)
+        {
+            _rollbackCommand?.Execute(rover, planet);
         }
     }
 }

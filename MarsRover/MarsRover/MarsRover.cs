@@ -36,10 +36,10 @@ namespace MarsRover
         {
             _availableCommands = new Dictionary<char, ICommand>
             {
-                ['f'] = new ForwardCommand(),
-                ['b'] = new BackwardCommand(),
-                ['r'] = new TurnRightCommand(),
-                ['l'] = new TurnLeftCommand()
+                ['f'] = new ForwardCommand(new BackwardCommand()),
+                ['b'] = new BackwardCommand(new ForwardCommand()),
+                ['r'] = new TurnRightCommand(new TurnLeftCommand()),
+                ['l'] = new TurnLeftCommand(new TurnRightCommand())
             };
         }
 
@@ -48,6 +48,11 @@ namespace MarsRover
             foreach (var command in commands)
             {
                 _availableCommands[command].Execute(this, _planet);
+                if (_planet.IsObstacle(PositionX, PositionY))
+                {
+                    _availableCommands[command].Rollback(this, _planet);
+                    break;
+                }
             }
 
         }

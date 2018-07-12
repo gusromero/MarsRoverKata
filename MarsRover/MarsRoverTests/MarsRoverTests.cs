@@ -123,7 +123,7 @@ namespace MarsRoverTests
         public void MSFindsAnObstacle()
         {
             _planetMock.Setup(b => b.IsObstacle(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
-            _planetMock.Setup(b => b.IsObstacle(3, 0)).Returns(true);
+            _planetMock.Setup(b => b.IsObstacle(0, 3)).Returns(true);
 
             _rover.ExecuteCommands("ffffffffff");
 
